@@ -1,0 +1,14 @@
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\Forconsol.deps.json
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\Forconsol.dll
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\Forconsol.pdb
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\Forconsol.xml
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.csproj.AssemblyReference.cache
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.AssemblyInfoInputs.cache
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.AssemblyInfo.cs
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.csproj.CoreCompileInputs.cache
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.dll
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\refint\Forconsol.dll
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.xml
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\Forconsol.pdb
+C:\Users\cuart\source\repos\Forconsol\obj\Release\net7.0\ref\Forconsol.dll

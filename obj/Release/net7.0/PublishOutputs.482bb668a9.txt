@@ -1,0 +1,4 @@
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\publish\Forconsol.dll
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\publish\Forconsol.deps.json
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\publish\Forconsol.pdb
+C:\Users\cuart\source\repos\Forconsol\bin\Release\net7.0\publish\Forconsol.xml

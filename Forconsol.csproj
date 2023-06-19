@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <AssemblyName>Forconsol</AssemblyName>
+    <RootNamespace>Forconsol</RootNamespace>
+    <SignAssembly>False</SignAssembly>
+  </PropertyGroup>
+
+</Project>
