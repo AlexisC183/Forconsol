@@ -1,5 +1,5 @@
 # Forconsol
-Una biblioteca originalmente pensada para aplicaciones de consola, pero contiene programas también válidos para otros tipos de proyectos de .NET 7.0. Uso libre por cualquiera. Información y algunos ejemplos sencillos disponibles en YouTube:
+Una biblioteca originalmente pensada para aplicaciones de consola, pero contiene programas también válidos para otros tipos de proyectos de .NET 8.0. Uso libre por cualquiera. Los siguientes tutoriales han sido publicados previamente a la versión 8.0 de .NET, pero siguen vigentes:
 - Presentación: https://youtu.be/_mHUmgFVNyw
 - SolicitudDeEntrada\<TResultado\> Clase: https://youtu.be/F9BnFdjLLiE
 - Fraccion y NumeroRacional: https://youtu.be/x5zicIp8NLo
