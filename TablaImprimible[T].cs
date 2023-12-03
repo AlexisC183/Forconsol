@@ -19,7 +19,7 @@
             }
             this.tabla = tabla;
 
-            if (tabla.GetType().GetElementType().IsNumber())
+            if (typeof(T).IsNumber())
             {
                 AlineacionDeElementos = AlineacionDeElementos.Derecha;
             }
@@ -89,7 +89,7 @@
                 }
                 Console.WriteLine();
             }
-        }      
+        }
     }
 
     /// <summary>
@@ -101,7 +101,7 @@
         /// Alineación a la izquierda.
         /// </summary>
         Izquierda,
-        
+
         /// <summary>
         /// Alineación a la derecha.
         /// </summary>

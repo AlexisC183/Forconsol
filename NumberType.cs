@@ -26,6 +26,6 @@ namespace Forconsol
         public static bool IsNumber(this Type? tipo)
         {
             return tipo == typeof(int) || tipo == typeof(double) || tipo == typeof(byte) || tipo == typeof(float) || tipo == typeof(decimal) || tipo == typeof(long) || tipo == typeof(char) || tipo == typeof(short) || tipo == typeof(sbyte) || tipo == typeof(ushort) || tipo == typeof(uint) || tipo == typeof(ulong) || tipo == typeof(nint) || tipo == typeof(nuint) || tipo == typeof(BigInteger) || tipo == typeof(Half) || tipo == typeof(Int128) || tipo == typeof(UInt128) || tipo == typeof(NFloat);
-        }        
+        }
     }
 }

@@ -106,7 +106,7 @@
                     Console.WriteLine(MensajeDeError ?? "¡Entrada no válida!");
                 }
             }
-        } 
+        }
     }
 
     /// <summary>

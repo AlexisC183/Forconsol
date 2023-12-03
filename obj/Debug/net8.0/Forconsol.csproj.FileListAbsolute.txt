@@ -1,0 +1,11 @@
+C:\Users\DELL\source\repos\Forconsol\bin\Debug\net8.0\Forconsol.deps.json
+C:\Users\DELL\source\repos\Forconsol\bin\Debug\net8.0\Forconsol.dll
+C:\Users\DELL\source\repos\Forconsol\bin\Debug\net8.0\Forconsol.pdb
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.AssemblyInfo.cs
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.dll
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\refint\Forconsol.dll
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\Forconsol.pdb
+C:\Users\DELL\source\repos\Forconsol\obj\Debug\net8.0\ref\Forconsol.dll

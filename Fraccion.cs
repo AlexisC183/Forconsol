@@ -6,16 +6,8 @@ namespace Forconsol
     /// <summary>
     /// Representa un número racional expresado en forma fraccionaria. Al crear una instancia de <see cref="Fraccion"/> puede que se efectúe un proceso de simplificación.
     /// </summary>
-    public struct Fraccion : IComparable, IComparable<Fraccion>, IEquatable<Fraccion>, IAdditionOperators<Fraccion, Fraccion, Fraccion>, IComparisonOperators<Fraccion, Fraccion, bool>, IDecrementOperators<Fraccion>, IDivisionOperators<Fraccion, Fraccion, Fraccion>, IEqualityOperators<Fraccion, Fraccion, bool>, IIncrementOperators<Fraccion>, IMinMaxValue<Fraccion>, IModulusOperators<Fraccion, Fraccion, Fraccion>, IMultiplyOperators<Fraccion, Fraccion, Fraccion>, ISubtractionOperators<Fraccion, Fraccion, Fraccion>, IUnaryNegationOperators<Fraccion, Fraccion>, IUnaryPlusOperators<Fraccion, Fraccion>
+    public readonly struct Fraccion : IComparable, IComparable<Fraccion>, IEquatable<Fraccion>, IAdditionOperators<Fraccion, Fraccion, Fraccion>, IComparisonOperators<Fraccion, Fraccion, bool>, IDecrementOperators<Fraccion>, IDivisionOperators<Fraccion, Fraccion, Fraccion>, IEqualityOperators<Fraccion, Fraccion, bool>, IIncrementOperators<Fraccion>, IMinMaxValue<Fraccion>, IModulusOperators<Fraccion, Fraccion, Fraccion>, IMultiplyOperators<Fraccion, Fraccion, Fraccion>, ISubtractionOperators<Fraccion, Fraccion, Fraccion>, IUnaryNegationOperators<Fraccion, Fraccion>, IUnaryPlusOperators<Fraccion, Fraccion>
     {
-        /// <summary>
-        /// Inicializa una nueva instancia de la estructura <see cref="Fraccion"/> estableciendo 0 como el numerador y 1 como el denominador.
-        /// </summary>
-        public Fraccion()
-        {
-            denominador = 1;
-        }
-
         /// <summary>
         /// Inicializa una nueva instancia de la estructura <see cref="Fraccion"/> al numerador y denominador especificados.
         /// </summary>
@@ -30,10 +22,51 @@ namespace Forconsol
             }
             this.numerador = numerador;
             this.denominador = denominador;
-            SimplificarFraccion();
+
+            NumeroRacional.GetNumeradorYDenominador(this.numerador / (decimal)this.denominador, out this.numerador, out this.denominador);
+
+            if (denominador != int.MinValue && this.denominador > Math.Abs(denominador))
+            {
+                this.numerador = numerador;
+                this.denominador = denominador;
+            }
+            if (this.denominador != 1)
+            {
+                bool hasSigno = false;
+
+                if (int.IsNegative(this.numerador) ^ int.IsNegative(this.denominador))
+                {
+                    hasSigno = true;
+                }
+                this.numerador = Math.Abs(this.numerador);
+                this.denominador = Math.Abs(this.denominador);
+
+                //Esta condición es por motivos de complejidad temporal
+                if (this.denominador < 100000 || this.numerador < 10110)
+                {
+                    NumeroPrimo numeroPrimo = new();
+
+                    int divisorPrimo = numeroPrimo.Next();
+
+                    while (divisorPrimo <= this.numerador && divisorPrimo <= this.denominador)
+                    {
+                        if (this.numerador % divisorPrimo == 0 && this.denominador % divisorPrimo == 0)
+                        {
+                            this.numerador /= divisorPrimo;
+                            this.denominador /= divisorPrimo;
+                            numeroPrimo.Reset();
+                        }
+                        divisorPrimo = numeroPrimo.Next();
+                    }
+                }
+                if (hasSigno)
+                {
+                    this.numerador *= -1;
+                }
+            }
         }
-  
-        private int denominador, numerador;
+
+        private readonly int denominador, numerador;
         private static Regex expresionRegular = new(@"^\s*-?\d+\s*/\s*-?\d+\s*$");
 
         /// <summary>
@@ -46,7 +79,7 @@ namespace Forconsol
         /// Obtiene el denominador representado por esta instancia.
         /// </summary>
         /// <returns>El denominador, en su forma simplificada si fue posible.</returns>
-        public int Denominador { get => denominador; }
+        public int Denominador { get => (denominador == 0) ? 1 : denominador; }
 
         /// <summary>
         /// Obtiene un objeto <see cref="Fraccion"/> que representa 1 / 1000000000.
@@ -115,24 +148,6 @@ namespace Forconsol
         public static Fraccion Abs(Fraccion fraccion)
         {
             return IsNegative(fraccion) ? checked(-fraccion) : fraccion;
-        }
-
-        private void AplicarAlgoritmoSimplificarFraccion()
-        {
-            NumeroPrimo numeroPrimo = new();
-
-            int divisorPrimo = numeroPrimo.Next();
-
-            while (divisorPrimo <= numerador && divisorPrimo <= denominador)
-            {
-                if (numerador % divisorPrimo == 0 && denominador % divisorPrimo == 0)
-                {
-                    numerador /= divisorPrimo;
-                    denominador /= divisorPrimo;
-                    numeroPrimo.Reset();
-                }
-                divisorPrimo = numeroPrimo.Next();
-            }
         }
 
         /// <summary>
@@ -233,7 +248,7 @@ namespace Forconsol
         /// <returns>Un código hash de tipo int.</returns>
         public override int GetHashCode()
         {
-            return HashCode.Combine(numerador, denominador);
+            return HashCode.Combine(Numerador, Denominador);
         }
 
         /// <summary>
@@ -291,7 +306,7 @@ namespace Forconsol
         /// </returns>
         public static bool IsInteger(Fraccion fraccion)
         {
-            return fraccion.denominador == 1;
+            return fraccion.Denominador == 1;
         }
 
         /// <summary>
@@ -410,42 +425,7 @@ namespace Forconsol
         /// <exception cref="DivideByZeroException"></exception>
         public static Fraccion Reciproco(Fraccion fraccion)
         {
-            return new(fraccion.denominador, fraccion.numerador);
-        }
-
-        private void SimplificarFraccion()
-        {
-            int numeradorRespaldo = numerador;
-            int denominadorRespaldo = denominador;
-
-            NumeroRacional.GetNumeradorYDenominador(numerador / (decimal)denominador, out numerador, out denominador);
-
-            if (denominadorRespaldo != int.MinValue && denominador > Math.Abs(denominadorRespaldo))
-            {
-                numerador = numeradorRespaldo;
-                denominador = denominadorRespaldo;
-            }
-            if (denominador != 1)
-            {
-                bool hasSigno = false;
-
-                if (int.IsNegative(numerador) ^ int.IsNegative(denominador))
-                {
-                    hasSigno = true;
-                }
-                numerador = Math.Abs(numerador);
-                denominador = Math.Abs(denominador);
-
-                //Esta condición es por motivos de complejidad temporal
-                if (denominador < 100000 || numerador < 10110)
-                {
-                    AplicarAlgoritmoSimplificarFraccion();
-                }
-                if (hasSigno)
-                {
-                    numerador *= -1;
-                }
-            }
+            return new(fraccion.Denominador, fraccion.Numerador);
         }
 
         /// <summary>
@@ -454,7 +434,7 @@ namespace Forconsol
         /// <returns>La representación en cadena del valor de esta instancia.</returns>
         public override string ToString()
         {
-            return numerador + " / " + denominador;
+            return Numerador + " / " + Denominador;
         }
 
         /// <summary>
@@ -521,7 +501,7 @@ namespace Forconsol
             }
             catch (OverflowException)
             {
-                return new(sumando.numerador * sumando1.denominador + sumando.denominador * sumando1.numerador, sumando.denominador * sumando1.denominador);
+                return new(sumando.Numerador * sumando1.Denominador + sumando.Denominador * sumando1.Numerador, sumando.Denominador * sumando1.Denominador);
             }
         }
 
@@ -799,7 +779,7 @@ namespace Forconsol
         {
             checked
             {
-                return new(-fraccion.numerador, fraccion.denominador);
+                return new(-fraccion.Numerador, fraccion.Denominador);
             }
         }
 
@@ -853,7 +833,7 @@ namespace Forconsol
             }
             catch (OverflowException)
             {
-                return new(dividendo.numerador * divisor.denominador, dividendo.denominador * divisor.numerador);
+                return new(dividendo.Numerador * divisor.Denominador, dividendo.Denominador * divisor.Numerador);
             }
         }
 
@@ -1430,7 +1410,7 @@ namespace Forconsol
             }
             catch (OverflowException)
             {
-                return new(factor.numerador * factor1.numerador, factor.denominador * factor1.denominador);
+                return new(factor.Numerador * factor1.Numerador, factor.Denominador * factor1.Denominador);
             }
         }
 
@@ -1464,7 +1444,7 @@ namespace Forconsol
             }
             catch (OverflowException)
             {
-                return new(minuendo.numerador * sustraendo.denominador - minuendo.denominador * sustraendo.numerador, minuendo.denominador * sustraendo.denominador);
+                return new(minuendo.Numerador * sustraendo.Denominador - minuendo.Denominador * sustraendo.Numerador, minuendo.Denominador * sustraendo.Denominador);
             }
         }
 
@@ -1485,7 +1465,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator -(Fraccion fraccion)
         {
-            return new(-fraccion.numerador, fraccion.denominador);
+            return new(-fraccion.Numerador, fraccion.Denominador);
         }
 
         /// <summary>
@@ -1505,7 +1485,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator +(Fraccion fraccion)
         {
-            return new(+fraccion.numerador, fraccion.denominador);
+            return new(+fraccion.Numerador, fraccion.Denominador);
         }
     }
 }

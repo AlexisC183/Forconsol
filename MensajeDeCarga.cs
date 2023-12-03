@@ -8,7 +8,7 @@
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="MensajeDeCarga"/> con un mensaje especificado.
         /// </summary>
-        /// <param name="mensaje">Un mensaje pensando para avisarle al usuario algo.</param>
+        /// <param name="mensaje">Un mensaje pensado para avisarle al usuario algo.</param>
         public MensajeDeCarga(string? mensaje)
         {
             this.mensaje = mensaje;
@@ -63,11 +63,11 @@
                 try
                 {
                     await Task.Delay(1000, fuente.Token);
-                    Console.Write("\b\b\b─__");
+                    Console.Write("\b\b\b-__");
                     await Task.Delay(1000, fuente.Token);
-                    Console.Write("\b\b\b_─_");
+                    Console.Write("\b\b\b_-_");
                     await Task.Delay(1000, fuente.Token);
-                    Console.Write("\b\b_─");
+                    Console.Write("\b\b_-");
                     await Task.Delay(1000, fuente.Token);
                     Console.Write("\b_");
                 }
@@ -106,7 +106,7 @@
         /// </summary>
         public void Start()
         {
-            Task tarea = null;
+            Task tarea;
 
             Console.Write(mensaje);
             switch (EstiloDeCarga)
@@ -131,7 +131,7 @@
         {
             fuente.Cancel();
             Console.WriteLine();
-        }        
+        }
     }
 
     /// <summary>

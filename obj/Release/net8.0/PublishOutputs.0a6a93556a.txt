@@ -1,0 +1,3 @@
+C:\Users\DELL\Downloads\Forconsol.dll
+C:\Users\DELL\Downloads\Forconsol.deps.json
+C:\Users\DELL\Downloads\Forconsol.pdb

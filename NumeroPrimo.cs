@@ -8,7 +8,7 @@
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="NumeroPrimo"/> lista para calcular números primos.
         /// </summary>
-        public NumeroPrimo() 
+        public NumeroPrimo()
         {
             numeroIncrementable = 1;
         }

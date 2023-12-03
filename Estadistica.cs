@@ -16,7 +16,7 @@ namespace Forconsol
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
         public static double Mediana<T>(this IEnumerable<T> numeros) where T : INumber<T>
-        {   
+        {
             if (numeros == null)
             {
                 throw new ArgumentNullException();

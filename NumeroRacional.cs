@@ -313,6 +313,6 @@
         public static string NotacionDecimalACientifica(string real)
         {
             return NotacionDecimalACientifica(double.Parse(real));
-        }  
+        }
     }
 }
