@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\Forconsol_old\\Forconsol.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\Forconsol\\Forconsol.csproj",
       "projectName": "Forconsol",
-      "projectPath": "C:\\Users\\DELL\\source\\repos\\Forconsol_old\\Forconsol.csproj",
+      "projectPath": "C:\\Users\\DELL\\source\\repos\\Forconsol\\Forconsol.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\source\\repos\\Forconsol_old\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\source\\repos\\Forconsol\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

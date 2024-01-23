@@ -9,6 +9,33 @@
             Proporciona métodos de extensión para cálculos estadísticos.
             </summary>
         </member>
+        <member name="M:Forconsol.Estadistica.Mediana(System.Collections.Generic.IEnumerable{System.Decimal})">
+            <summary>
+            Calcula la mediana de una secuencia de valores <see langword="decimal"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="decimal"/> de la cual calcular la mediana.</param>
+            <returns>La mediana de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Mediana(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Calcula la mediana de una secuencia de valores <see langword="int"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="int"/> de la cual calcular la mediana.</param>
+            <returns>La mediana de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Mediana(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Calcula la mediana de una secuencia de valores <see langword="long"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular la mediana.</param>
+            <returns>La mediana de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="M:Forconsol.Estadistica.Mediana``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Calcula la mediana de una secuencia de valores <see><typeparamref name="T"/></see>.
@@ -27,6 +54,34 @@
             <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular la moda.</param>
             <returns>Una <see cref="T:System.Collections.Generic.IEnumerable`1"/> que contiene la moda de la secuencia fuente.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Rango(System.Collections.Generic.IEnumerable{System.Decimal})">
+            <summary>
+            Calcula el rango de una secuencia de valores <see langword="decimal"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="decimal"/> de la cual calcular el rango.</param>
+            <returns>El rango de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+            <exception cref="T:System.OverflowException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Rango(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Calcula el rango de una secuencia de valores <see langword="int"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="int"/> de la cual calcular el rango.</param>
+            <returns>El rango de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Rango(System.Collections.Generic.IEnumerable{System.Int64})">
+            <summary>
+            Calcula el rango de una secuencia de valores <see langword="long"/>.
+            </summary>
+            <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular el rango.</param>
+            <returns>El rango de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="M:Forconsol.Estadistica.Rango``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>

@@ -8,6 +8,66 @@ namespace Forconsol
     public static class Estadistica
     {
         /// <summary>
+        /// Calcula la mediana de una secuencia de valores <see langword="decimal"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="decimal"/> de la cual calcular la mediana.</param>
+        /// <returns>La mediana de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static decimal Mediana(this IEnumerable<decimal> numeros)
+        {
+            if (numeros == null) 
+            {
+                throw new ArgumentNullException();
+            }
+            else if (numeros.Any())
+            {
+                int cantidadDeNumeros = numeros.Count();
+
+                var numerosOrdenados = numeros.Order();
+
+                return
+                int.IsEvenInteger(cantidadDeNumeros)
+                ?
+                    numerosOrdenados.ElementAt(cantidadDeNumeros / 2 - 1) / 2 + numerosOrdenados.ElementAt(cantidadDeNumeros / 2) / 2
+                :
+                    numerosOrdenados.ElementAt(cantidadDeNumeros / 2);
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        /// <summary>
+        /// Calcula la mediana de una secuencia de valores <see langword="int"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="int"/> de la cual calcular la mediana.</param>
+        /// <returns>La mediana de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static decimal Mediana(this IEnumerable<int> numeros)
+        {
+            IEnumerable<decimal> aDecimal = numeros.Select(i => (decimal)i);
+
+            return aDecimal.Mediana();
+        }
+
+        /// <summary>
+        /// Calcula la mediana de una secuencia de valores <see langword="long"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular la mediana.</param>
+        /// <returns>La mediana de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static decimal Mediana(this IEnumerable<long> numeros)
+        {
+            IEnumerable<decimal> aDecimal = numeros.Select(l => (decimal)l);
+
+            return aDecimal.Mediana();
+        }
+
+        /// <summary>
         /// Calcula la mediana de una secuencia de valores <see><typeparamref name="T"/></see>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -15,6 +75,7 @@ namespace Forconsol
         /// <returns>La mediana de la secuencia de valores.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
+        [Obsolete("Este método no funciona con System.Char y realiza cálculos con System.Double. Utilizar las sobrecargas no genéricas, las cuales realizan cálculos con System.Decimal")]
         public static double Mediana<T>(this IEnumerable<T> numeros) where T : INumber<T>
         {
             if (numeros == null)
@@ -82,6 +143,58 @@ namespace Forconsol
         }
 
         /// <summary>
+        /// Calcula el rango de una secuencia de valores <see langword="decimal"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="decimal"/> de la cual calcular el rango.</param>
+        /// <returns>El rango de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        /// <exception cref="OverflowException"></exception>
+        public static decimal Rango(this IEnumerable<decimal> numeros)
+        {
+            if (numeros == null)
+            {
+                throw new ArgumentNullException();
+            }
+            else if (numeros.Any())
+            {
+                return numeros.Max() - numeros.Min();
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        /// <summary>
+        /// Calcula el rango de una secuencia de valores <see langword="int"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="int"/> de la cual calcular el rango.</param>
+        /// <returns>El rango de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static decimal Rango(this IEnumerable<int> numeros)
+        {
+            IEnumerable<decimal> aDecimal = numeros.Select(i => (decimal)i);
+
+            return aDecimal.Rango();
+        }
+
+        /// <summary>
+        /// Calcula el rango de una secuencia de valores <see langword="long"/>.
+        /// </summary>
+        /// <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular el rango.</param>
+        /// <returns>El rango de la secuencia de valores.</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public static decimal Rango(this IEnumerable<long> numeros)
+        {
+            IEnumerable<decimal> aDecimal = numeros.Select(l => (decimal)l);
+
+            return aDecimal.Rango();
+        }
+
+        /// <summary>
         /// Calcula el rango de una secuencia de valores <see><typeparamref name="T"/></see>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -89,6 +202,7 @@ namespace Forconsol
         /// <returns>El rango de la secuencia de valores.</returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="InvalidOperationException"></exception>
+        [Obsolete("Este método no funciona con System.Char y realiza cálculos con System.Double. Utilizar las sobrecargas no genéricas, las cuales realizan cálculos con System.Decimal")]
         public static double Rango<T>(this IEnumerable<T> numeros) where T : INumber<T>
         {
             if (numeros == null)
