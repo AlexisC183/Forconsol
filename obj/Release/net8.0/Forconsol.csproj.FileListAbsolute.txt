@@ -24,5 +24,4 @@ C:\Users\DELL\source\repos\Forconsol_old\obj\Release\net8.0\Forconsol.xml
 C:\Users\DELL\source\repos\Forconsol_old\obj\Release\net8.0\Forconsol.pdb
 C:\Users\DELL\source\repos\Forconsol_old\obj\Release\net8.0\ref\Forconsol.dll
 C:\Users\DELL\source\repos\Forconsol\bin\Release\net8.0\Forconsol.xml
-C:\Users\DELL\source\repos\Forconsol\obj\Release\net8.0\Forconsol.sourcelink.json
 C:\Users\DELL\source\repos\Forconsol\obj\Release\net8.0\Forconsol.xml

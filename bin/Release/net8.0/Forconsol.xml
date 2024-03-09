@@ -36,16 +36,6 @@
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:Forconsol.Estadistica.Mediana``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Calcula la mediana de una secuencia de valores <see><typeparamref name="T"/></see>.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular la mediana.</param>
-            <returns>La mediana de la secuencia de valores.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:System.InvalidOperationException"></exception>
-        </member>
         <member name="M:Forconsol.Estadistica.Moda``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Calcula la moda de una secuencia de valores <see><typeparamref name="T"/></see>.
@@ -79,16 +69,6 @@
             Calcula el rango de una secuencia de valores <see langword="long"/>.
             </summary>
             <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular el rango.</param>
-            <returns>El rango de la secuencia de valores.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-            <exception cref="T:System.InvalidOperationException"></exception>
-        </member>
-        <member name="M:Forconsol.Estadistica.Rango``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Calcula el rango de una secuencia de valores <see><typeparamref name="T"/></see>.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular el rango.</param>
             <returns>El rango de la secuencia de valores.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
@@ -1511,11 +1491,18 @@
             </summary>
             <returns>Una <see cref="T:System.String"/> que se imprime cuando se solicita al usuario una entrada.</returns>
         </member>
+        <member name="P:Forconsol.SolicitudDeEntrada`1.Saltable">
+            <summary>
+            Obtiene o establece un valor indicando si la solicitud se puede saltar al presionar Entrar.
+            </summary>
+            <returns><see langword="true"/> si la solicitud se puede saltar; en caso contrario, <see langword="false"/>. El predeterminado es false.</returns>
+        </member>
         <member name="M:Forconsol.SolicitudDeEntrada`1.Solicitar(`0@)">
             <summary>
             Solicita la entrada.
             </summary>
-            <param name="variable">Una variable donde se asigna la entrada.</param>
+            <param name="variable">Una variable donde se asigna la entrada. Si la solicitud fue saltada, esta variable contendrá su valor predeterminado.</param>
+            <returns><see langword="true"/> si se introdujo una entrada; en caso contrario, <see langword="false"/>.</returns>
         </member>
         <member name="T:Forconsol.MetodoParse`1">
             <summary>

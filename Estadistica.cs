@@ -68,35 +68,6 @@ namespace Forconsol
         }
 
         /// <summary>
-        /// Calcula la mediana de una secuencia de valores <see><typeparamref name="T"/></see>.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular la mediana.</param>
-        /// <returns>La mediana de la secuencia de valores.</returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        [Obsolete("Este método no funciona con System.Char y realiza cálculos con System.Double. Utilizar las sobrecargas no genéricas, las cuales realizan cálculos con System.Decimal")]
-        public static double Mediana<T>(this IEnumerable<T> numeros) where T : INumber<T>
-        {
-            if (numeros == null)
-            {
-                throw new ArgumentNullException();
-            }
-            else if (numeros.Any())
-            {
-                int cantidadDeNumeros = numeros.Count();
-
-                var numerosOrdenados = numeros.Order();
-
-                return int.IsEvenInteger(cantidadDeNumeros) ? double.Parse((numerosOrdenados.ElementAt(cantidadDeNumeros / 2 - 1) + numerosOrdenados.ElementAt(cantidadDeNumeros / 2)).ToString()) / 2 : double.Parse(numerosOrdenados.ElementAt(cantidadDeNumeros / 2).ToString());
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
-        }
-
-        /// <summary>
         /// Calcula la moda de una secuencia de valores <see><typeparamref name="T"/></see>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -192,41 +163,6 @@ namespace Forconsol
             IEnumerable<decimal> aDecimal = numeros.Select(l => (decimal)l);
 
             return aDecimal.Rango();
-        }
-
-        /// <summary>
-        /// Calcula el rango de una secuencia de valores <see><typeparamref name="T"/></see>.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular el rango.</param>
-        /// <returns>El rango de la secuencia de valores.</returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="InvalidOperationException"></exception>
-        [Obsolete("Este método no funciona con System.Char y realiza cálculos con System.Double. Utilizar las sobrecargas no genéricas, las cuales realizan cálculos con System.Decimal")]
-        public static double Rango<T>(this IEnumerable<T> numeros) where T : INumber<T>
-        {
-            if (numeros == null)
-            {
-                throw new ArgumentNullException();
-            }
-            else if (numeros.Any())
-            {
-                T valorMaximo = numeros.Max();
-                T valorMinimo = numeros.Min();
-
-                try
-                {
-                    return (double)((decimal)double.Parse(valorMaximo.ToString()) - (decimal)double.Parse(valorMinimo.ToString()));
-                }
-                catch (OverflowException)
-                {
-                    return double.Parse((valorMaximo - valorMinimo).ToString());
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException();
-            }
         }
     }
 }

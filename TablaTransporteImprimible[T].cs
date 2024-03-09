@@ -4,6 +4,7 @@
     /// Representa una tabla de transporte que se puede imprimir en consola.
     /// </summary>
     /// <typeparam name="T">El tipo de los elementos de la tabla.</typeparam>
+    [Obsolete("Esta API será retirada en el futuro")]
     public class TablaTransporteImprimible<T> : IImprimible
     {
         /// <summary>

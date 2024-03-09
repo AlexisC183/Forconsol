@@ -56,34 +56,47 @@
         public string MensajeDeSolicitud { get; set; }
 
         /// <summary>
+        /// Obtiene o establece un valor indicando si la solicitud se puede saltar al presionar Entrar.
+        /// </summary>
+        /// <returns><see langword="true"/> si la solicitud se puede saltar; en caso contrario, <see langword="false"/>. El predeterminado es false.</returns>
+        public bool Saltable { get; set; }
+
+        /// <summary>
         /// Solicita la entrada.
         /// </summary>
-        /// <param name="variable">Una variable donde se asigna la entrada.</param>
-        public void Solicitar(out TResultado variable)
+        /// <param name="variable">Una variable donde se asigna la entrada. Si la solicitud fue saltada, esta variable contendrá su valor predeterminado.</param>
+        /// <returns><see langword="true"/> si se introdujo una entrada; en caso contrario, <see langword="false"/>.</returns>
+        public bool Solicitar(out TResultado variable)
         {
-            if (metodoParse != null)
-            {
-                SolicitarConMetodoParse(out variable);
-            }
-            else
-            {
+            return
+            metodoParse != null
+            ?
+                SolicitarConMetodoParse(out variable)
+            :
                 SolicitarConMetodoTryParse(out variable);
-            }
         }
 
-        private void SolicitarConMetodoParse(out TResultado variable)
+        private bool SolicitarConMetodoParse(out TResultado variable)
         {
             while (true)
             {
-                Console.Write(MensajeDeSolicitud ?? "Introducir un " + typeof(TResultado) + ": ");
+                if (!SolicitarAccion(out string entrada))
+                {
+                    variable = default!;
+
+                    return false;
+                }
+
                 try
                 {
-                    variable = metodoParse(Console.ReadLine());
+                    variable = metodoParse(entrada);
+
                     if (Condicion != null && !Condicion(variable))
                     {
                         throw new ArgumentException();
                     }
-                    break;
+
+                    return true;
                 }
                 catch (Exception)
                 {
@@ -92,14 +105,29 @@
             }
         }
 
-        private void SolicitarConMetodoTryParse(out TResultado variable)
+        private bool SolicitarAccion(out string entrada)
+        {
+            Console.Write(MensajeDeSolicitud ?? "Introducir un " + typeof(TResultado) + ": ");
+
+            entrada = Console.ReadLine()!;
+
+            return !(Saltable && entrada == string.Empty);
+        }
+
+        private bool SolicitarConMetodoTryParse(out TResultado variable)
         {
             while (true)
             {
-                Console.Write(MensajeDeSolicitud ?? "Introducir un " + typeof(TResultado) + ": ");
-                if (metodoTryParse(Console.ReadLine(), out variable) && (Condicion == null || Condicion(variable)))
+                if (!SolicitarAccion(out string entrada))
                 {
-                    break;
+                    variable = default!;
+
+                    return false;
+                }
+
+                if (metodoTryParse(entrada, out variable) && (Condicion == null || Condicion(variable)))
+                {
+                    return true;
                 }
                 else
                 {
