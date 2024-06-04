@@ -6,7 +6,7 @@ namespace Forconsol
     /// <summary>
     /// Representa un número racional expresado en forma fraccionaria. Al crear una instancia de <see cref="Fraccion"/> puede que se efectúe un proceso de simplificación.
     /// </summary>
-    public readonly struct Fraccion : IComparable, IComparable<Fraccion>, IEquatable<Fraccion>, IAdditionOperators<Fraccion, Fraccion, Fraccion>, IComparisonOperators<Fraccion, Fraccion, bool>, IDecrementOperators<Fraccion>, IDivisionOperators<Fraccion, Fraccion, Fraccion>, IEqualityOperators<Fraccion, Fraccion, bool>, IIncrementOperators<Fraccion>, IMinMaxValue<Fraccion>, IModulusOperators<Fraccion, Fraccion, Fraccion>, IMultiplyOperators<Fraccion, Fraccion, Fraccion>, ISubtractionOperators<Fraccion, Fraccion, Fraccion>, IUnaryNegationOperators<Fraccion, Fraccion>, IUnaryPlusOperators<Fraccion, Fraccion>
+    public readonly struct Fraccion : IComparable, IComparable<Fraccion>, IConvertibleADecimal<Fraccion>, IEquatable<Fraccion>, IAdditionOperators<Fraccion, Fraccion, Fraccion>, IComparisonOperators<Fraccion, Fraccion, bool>, IDecrementOperators<Fraccion>, IDivisionOperators<Fraccion, Fraccion, Fraccion>, IEqualityOperators<Fraccion, Fraccion, bool>, IIncrementOperators<Fraccion>, IMinMaxValue<Fraccion>, IModulusOperators<Fraccion, Fraccion, Fraccion>, IMultiplyOperators<Fraccion, Fraccion, Fraccion>, ISubtractionOperators<Fraccion, Fraccion, Fraccion>, IUnaryNegationOperators<Fraccion, Fraccion>, IUnaryPlusOperators<Fraccion, Fraccion>
     {
         /// <summary>
         /// Inicializa una nueva instancia de la estructura <see cref="Fraccion"/> al numerador y denominador especificados.
@@ -177,7 +177,7 @@ namespace Forconsol
         /// </returns>
         public int CompareTo(Fraccion fraccion)
         {
-            return NumeroRacional.GetDecimal(this).CompareTo(NumeroRacional.GetDecimal(fraccion));
+            return ((decimal)this).CompareTo((decimal)fraccion);
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace Forconsol
         /// </returns>
         public static bool IsEvenInteger(Fraccion fraccion)
         {
-            return decimal.IsEvenInteger(NumeroRacional.GetDecimal(fraccion));
+            return decimal.IsEvenInteger((decimal)fraccion);
         }
 
         /// <summary>
@@ -497,7 +497,7 @@ namespace Forconsol
         {
             try
             {
-                return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(sumando) + NumeroRacional.GetDecimal(sumando1));
+                return ((decimal)sumando + (decimal)sumando1).ToFraccion();
             }
             catch (OverflowException)
             {
@@ -529,7 +529,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator checked +(Fraccion sumando, Fraccion sumando1)
         {
-            return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(sumando) + NumeroRacional.GetDecimal(sumando1));
+            return ((decimal)sumando + (decimal)sumando1).ToFraccion();
         }
 
         /// <summary>
@@ -579,52 +579,52 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator checked /(Fraccion dividendo, Fraccion divisor)
         {
-            return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(dividendo) / NumeroRacional.GetDecimal(divisor));
+            return ((decimal)dividendo / (decimal)divisor).ToFraccion();
         }
 
         public static explicit operator checked byte(Fraccion fraccion)
         {
-            return (byte)NumeroRacional.GetDecimal(fraccion);
+            return (byte)(decimal)fraccion;
         }
 
         public static explicit operator checked char(Fraccion fraccion)
         {
-            return (char)NumeroRacional.GetDecimal(fraccion);
+            return (char)(decimal)fraccion;
         }
 
         public static explicit operator checked short(Fraccion fraccion)
         {
-            return (short)NumeroRacional.GetDecimal(fraccion);
+            return (short)(decimal)fraccion;
         }
 
         public static explicit operator checked sbyte(Fraccion fraccion)
         {
-            return (sbyte)NumeroRacional.GetDecimal(fraccion);
+            return (sbyte)(decimal)fraccion;
         }
 
         public static explicit operator checked UInt128(Fraccion fraccion)
         {
-            return (UInt128)NumeroRacional.GetDecimal(fraccion);
+            return (UInt128)(decimal)fraccion;
         }
 
         public static explicit operator checked ushort(Fraccion fraccion)
         {
-            return (ushort)NumeroRacional.GetDecimal(fraccion);
+            return (ushort)(decimal)fraccion;
         }
 
         public static explicit operator checked uint(Fraccion fraccion)
         {
-            return (uint)NumeroRacional.GetDecimal(fraccion);
+            return (uint)(decimal)fraccion;
         }
 
         public static explicit operator checked ulong(Fraccion fraccion)
         {
-            return (ulong)NumeroRacional.GetDecimal(fraccion);
+            return (ulong)(decimal)fraccion;
         }
 
         public static explicit operator checked nuint(Fraccion fraccion)
         {
-            return (nuint)NumeroRacional.GetDecimal(fraccion);
+            return (nuint)(decimal)fraccion;
         }
 
         public static explicit operator checked Fraccion(Int128 entero)
@@ -730,7 +730,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator checked *(Fraccion factor, Fraccion factor1)
         {
-            return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(factor) * NumeroRacional.GetDecimal(factor1));
+            return ((decimal)factor * (decimal)factor1).ToFraccion();
         }
 
         /// <summary>
@@ -757,7 +757,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator checked -(Fraccion minuendo, Fraccion sustraendo)
         {
-            return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(minuendo) - NumeroRacional.GetDecimal(sustraendo));
+            return ((decimal)minuendo - (decimal)sustraendo).ToFraccion();
         }
 
         /// <summary>
@@ -829,7 +829,7 @@ namespace Forconsol
         {
             try
             {
-                return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(dividendo) / NumeroRacional.GetDecimal(divisor));
+                return ((decimal)dividendo / (decimal)divisor).ToFraccion();
             }
             catch (OverflowException)
             {
@@ -870,7 +870,7 @@ namespace Forconsol
         /// </returns>
         public static bool operator ==(Fraccion fraccion, Fraccion fraccion1)
         {
-            return NumeroRacional.GetDecimal(fraccion) == NumeroRacional.GetDecimal(fraccion1);
+            return (decimal)fraccion == (decimal)fraccion1;
         }
 
         /// <summary>
@@ -890,7 +890,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una BigInteger.</returns>
         public static explicit operator BigInteger(Fraccion fraccion)
         {
-            return (BigInteger)NumeroRacional.GetDecimal(fraccion);
+            return (BigInteger)(decimal)fraccion;
         }
 
         /// <summary>
@@ -900,7 +900,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una byte.</returns>
         public static explicit operator byte(Fraccion fraccion)
         {
-            return (byte)(int)NumeroRacional.GetDecimal(fraccion);
+            return (byte)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -910,7 +910,17 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una char.</returns>
         public static explicit operator char(Fraccion fraccion)
         {
-            return (char)(int)NumeroRacional.GetDecimal(fraccion);
+            return (char)(int)(decimal)fraccion;
+        }
+
+        /// <summary>
+        /// Explícitamente convierte una fracción a un valor <see cref="decimal"/>.
+        /// </summary>
+        /// <param name="fraccion">El valor a convertir.</param>
+        /// <returns><paramref name="fraccion"/> convertida a un decimal.</returns>
+        public static explicit operator decimal(Fraccion fraccion)
+        {
+            return fraccion.Numerador / (decimal)fraccion.Denominador;
         }
 
         /// <summary>
@@ -920,7 +930,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una Int128.</returns>
         public static explicit operator Int128(Fraccion fraccion)
         {
-            return (Int128)NumeroRacional.GetDecimal(fraccion);
+            return (Int128)(decimal)fraccion;
         }
 
         /// <summary>
@@ -930,7 +940,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una short.</returns>
         public static explicit operator short(Fraccion fraccion)
         {
-            return (short)(int)NumeroRacional.GetDecimal(fraccion);
+            return (short)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -940,7 +950,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una int.</returns>
         public static explicit operator int(Fraccion fraccion)
         {
-            return (int)NumeroRacional.GetDecimal(fraccion);
+            return (int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -950,7 +960,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una long.</returns>
         public static explicit operator long(Fraccion fraccion)
         {
-            return (long)NumeroRacional.GetDecimal(fraccion);
+            return (long)(decimal)fraccion;
         }
 
         /// <summary>
@@ -960,7 +970,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una nint.</returns>
         public static explicit operator nint(Fraccion fraccion)
         {
-            return (nint)NumeroRacional.GetDecimal(fraccion);
+            return (nint)(decimal)fraccion;
         }
 
         /// <summary>
@@ -970,7 +980,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una sbyte.</returns>
         public static explicit operator sbyte(Fraccion fraccion)
         {
-            return (sbyte)(int)NumeroRacional.GetDecimal(fraccion);
+            return (sbyte)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -980,7 +990,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una UInt128.</returns>
         public static explicit operator UInt128(Fraccion fraccion)
         {
-            return (UInt128)(int)NumeroRacional.GetDecimal(fraccion);
+            return (UInt128)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -990,7 +1000,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una ushort.</returns>
         public static explicit operator ushort(Fraccion fraccion)
         {
-            return (ushort)(int)NumeroRacional.GetDecimal(fraccion);
+            return (ushort)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -1000,7 +1010,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una uint.</returns>
         public static explicit operator uint(Fraccion fraccion)
         {
-            return (uint)(int)NumeroRacional.GetDecimal(fraccion);
+            return (uint)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -1010,7 +1020,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una ulong.</returns>
         public static explicit operator ulong(Fraccion fraccion)
         {
-            return (ulong)(int)NumeroRacional.GetDecimal(fraccion);
+            return (ulong)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -1020,7 +1030,7 @@ namespace Forconsol
         /// <returns><paramref name="fraccion"/> convertida a una nuint.</returns>
         public static explicit operator nuint(Fraccion fraccion)
         {
-            return (nuint)(int)NumeroRacional.GetDecimal(fraccion);
+            return (nuint)(int)(decimal)fraccion;
         }
 
         /// <summary>
@@ -1126,7 +1136,7 @@ namespace Forconsol
         /// </returns>
         public static bool operator >(Fraccion fraccion, Fraccion fraccion1)
         {
-            return NumeroRacional.GetDecimal(fraccion) > NumeroRacional.GetDecimal(fraccion1);
+            return (decimal)fraccion > (decimal)fraccion1;
         }
 
         /// <summary>
@@ -1314,7 +1324,7 @@ namespace Forconsol
         /// </returns>
         public static bool operator <(Fraccion fraccion, Fraccion fraccion1)
         {
-            return NumeroRacional.GetDecimal(fraccion) < NumeroRacional.GetDecimal(fraccion1);
+            return (decimal)fraccion < (decimal)fraccion1;
         }
 
         /// <summary>
@@ -1377,7 +1387,7 @@ namespace Forconsol
         /// </returns>
         public static Fraccion operator %(Fraccion dividendo, Fraccion divisor)
         {
-            return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(dividendo) % NumeroRacional.GetDecimal(divisor));
+            return ((decimal)dividendo % (decimal)divisor).ToFraccion();
         }
 
         /// <summary>
@@ -1406,7 +1416,7 @@ namespace Forconsol
         {
             try
             {
-                return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(factor) * NumeroRacional.GetDecimal(factor1));
+                return ((decimal)factor * (decimal)factor1).ToFraccion();
             }
             catch (OverflowException)
             {
@@ -1440,7 +1450,7 @@ namespace Forconsol
         {
             try
             {
-                return NumeroRacional.GetFraccion(NumeroRacional.GetDecimal(minuendo) - NumeroRacional.GetDecimal(sustraendo));
+                return ((decimal)minuendo - (decimal)sustraendo).ToFraccion();
             }
             catch (OverflowException)
             {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Forconsol")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2fc7d267f4f601a6973f52438598d4eeedceb705")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+080f98b6350df00f8ea06a77dfd66a96fdf0dc93")]
 [assembly: System.Reflection.AssemblyProductAttribute("Forconsol")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Forconsol")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,7 +4,7 @@
     /// Representa una tabla de objetos que se puede imprimir en consola.
     /// </summary>
     /// <typeparam name="T">El tipo de los elementos de la tabla.</typeparam>
-    public class TablaImprimible<T> : IImprimible
+    public class TablaImprimible<T>
     {
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="TablaImprimible{T}"/> con una tabla especificada.

@@ -36,7 +36,26 @@
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
+        <member name="M:Forconsol.Estadistica.Mediana``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Calcula la mediana de una secuencia de valores <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular la mediana.</param>
+            <returns>La mediana de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="M:Forconsol.Estadistica.Moda``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Calcula la moda de una secuencia de valores <see><typeparamref name="T"/></see>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular la moda.</param>
+            <returns>Una <see cref="T:System.Collections.Generic.IEnumerable`1"/> que contiene la moda de la secuencia fuente.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.ModaDecimales``1(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             Calcula la moda de una secuencia de valores <see><typeparamref name="T"/></see>.
             </summary>
@@ -69,6 +88,16 @@
             Calcula el rango de una secuencia de valores <see langword="long"/>.
             </summary>
             <param name="numeros">Una secuencia de valores <see langword="long"/> de la cual calcular el rango.</param>
+            <returns>El rango de la secuencia de valores.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Forconsol.Estadistica.Rango``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Calcula el rango de una secuencia de valores <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="numeros">Una secuencia de valores <typeparamref name="T"/> de la cual calcular el rango.</param>
             <returns>El rango de la secuencia de valores.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
@@ -666,6 +695,13 @@
             <param name="fraccion">El valor a convertir.</param>
             <returns><paramref name="fraccion"/> convertida a una char.</returns>
         </member>
+        <member name="M:Forconsol.Fraccion.op_Explicit(Forconsol.Fraccion)~System.Decimal">
+            <summary>
+            Explícitamente convierte una fracción a un valor <see cref="T:System.Decimal"/>.
+            </summary>
+            <param name="fraccion">El valor a convertir.</param>
+            <returns><paramref name="fraccion"/> convertida a un decimal.</returns>
+        </member>
         <member name="M:Forconsol.Fraccion.op_Explicit(Forconsol.Fraccion)~System.Int128">
             <summary>
             Explícitamente convierte una fracción a un valor <see cref="T:System.Int128"/>.
@@ -1122,15 +1158,26 @@
             </para>
             </returns>
         </member>
-        <member name="T:Forconsol.IImprimible">
+        <member name="T:Forconsol.IConvertibleADecimal`1">
             <summary>
-            Define un método generalizado que un value type o clase implementa para imprimir datos de una forma determinada.
+            Define un tipo que se puede convertir a <see cref="T:System.Decimal"/>.
             </summary>
+            <typeparam name="TMismo">El tipo que implementa la interfaz.</typeparam>
         </member>
-        <member name="M:Forconsol.IImprimible.Imprimir">
+        <member name="M:Forconsol.IConvertibleADecimal`1.op_CheckedExplicit(`0)~System.Decimal">
             <summary>
-            Imprime los datos.
+            Explícitamente convierte un valor <typeparamref name="TMismo"/> a un decimal.
             </summary>
+            <param name="instancia">El valor a convertir.</param>
+            <returns><paramref name="instancia"/> convertida a un decimal.</returns>
+            <exception cref="T:System.OverflowException"></exception>
+        </member>
+        <member name="M:Forconsol.IConvertibleADecimal`1.op_Explicit(`0)~System.Decimal">
+            <summary>
+            Explícitamente convierte un valor <typeparamref name="TMismo"/> a un decimal.
+            </summary>
+            <param name="instancia">El valor a convertir.</param>
+            <returns><paramref name="instancia"/> convertida a un decimal.</returns>
         </member>
         <member name="T:Forconsol.MensajeDeCarga">
             <summary>
@@ -1453,6 +1500,14 @@
             <exception cref="T:System.ArgumentNullException"></exception>
             <exception cref="T:System.FormatException"></exception>
         </member>
+        <member name="M:Forconsol.NumeroRacional.ToFraccion(System.Decimal)">
+            <summary>
+            Convierte un decimal en una fracción.
+            </summary>
+            <param name="decimal_">Un decimal a convertir.</param>
+            <returns>Una fracción equivalente o aproximada al número contenido en <paramref name="decimal_"/>.</returns>
+            <exception cref="T:System.OverflowException"></exception>
+        </member>
         <member name="T:Forconsol.SolicitudDeEntrada`1">
             <summary>
             Representa una solicitud de entrada de un valor por el usuario y proporciona un mecanismo para que dicho valor siempre sea el correcto.
@@ -1564,24 +1619,6 @@
         <member name="F:Forconsol.AlineacionDeElementos.Derecha">
             <summary>
             Alineación a la derecha.
-            </summary>
-        </member>
-        <member name="T:Forconsol.TablaTransporteImprimible`1">
-            <summary>
-            Representa una tabla de transporte que se puede imprimir en consola.
-            </summary>
-            <typeparam name="T">El tipo de los elementos de la tabla.</typeparam>
-        </member>
-        <member name="M:Forconsol.TablaTransporteImprimible`1.#ctor(`0[0:,0:])">
-            <summary>
-            Inicializa una nueva instancia de la clase <see cref="T:Forconsol.TablaTransporteImprimible`1"/> con una tabla especificada.
-            </summary>
-            <param name="tabla">Un arreglo bidimensional.</param>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:Forconsol.TablaTransporteImprimible`1.Imprimir">
-            <summary>
-            Imprime la tabla de transporte en consola.
             </summary>
         </member>
     </members>
