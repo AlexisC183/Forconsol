@@ -6,17 +6,24 @@
     public class MensajeDeCarga
     {
         /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="MensajeDeCarga"/>.
+        /// </summary>
+        public MensajeDeCarga()
+        {
+        
+        }
+
+        /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="MensajeDeCarga"/> con un mensaje especificado.
         /// </summary>
         /// <param name="mensaje">Un mensaje pensado para avisarle al usuario algo.</param>
         public MensajeDeCarga(string? mensaje)
         {
-            this.mensaje = mensaje;
-            fuente = new();
+            Mensaje = mensaje;
         }
 
-        private CancellationTokenSource fuente;
-        private string mensaje;
+        private Thread animacion;
+        private bool estaActivo;
 
         /// <summary>
         /// Obtiene o establece el estilo del mensaje de carga.
@@ -24,112 +31,169 @@
         /// <returns>Una <see cref="EstiloDeCarga"/> de la instancia actual. La predeterminada es puntos.</returns>
         public EstiloDeCarga EstiloDeCarga { get; set; }
 
-        private async void AccionLineaRotatoria()
+        /// <summary>
+        /// Obtiene o establece el mensaje del mensaje de carga, o null si ninguno fue suministrado.
+        /// </summary>
+        /// <returns>Una <see cref="string"/> pensada para avisarle al usuario algo.</returns>
+        public string? Mensaje { get; set; }
+
+        /// <summary>
+        /// Obtiene un valor que indica si este mensaje de carga está activo.
+        /// </summary>
+        /// <returns><see langword="true"/> si la animación asíncrona de este mensaje de carga está activa; <see langword="false"/> en caso contrario.</returns>
+        public bool EstaActivo { get => estaActivo; }
+
+        private void AccionLineaRotatoria()
         {
-            if (mensaje != null)
-            {
+            if (Mensaje != null)
                 Console.Write(' ');
-            }
+
             Console.Write('─');
+
             while (true)
             {
                 try
                 {
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\\");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b|");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b/");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b─");
                 }
-                catch (TaskCanceledException)
+                catch (ThreadInterruptedException)
                 {
-
+                    break;
                 }
             }
         }
 
-        private async void AccionLineas()
+        private void AccionLineas()
         {
-            if (mensaje != null)
-            {
+            if (Mensaje != null)
                 Console.Write(' ');
-            }
+
             Console.Write("___");
+
             while (true)
             {
                 try
                 {
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b\b-__");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b\b_-_");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b_-");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b_");
                 }
-                catch (TaskCanceledException)
+                catch (ThreadInterruptedException)
                 {
-
+                    break;
                 }
             }
         }
 
-        private async void AccionPuntos()
+        private void AccionPuntos()
         {
             Console.Write("   ");
+
             while (true)
             {
                 try
                 {
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b\b.  ");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b. ");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b.");
-                    await Task.Delay(1000, fuente.Token);
+                    Thread.Sleep(1_000);
                     Console.Write("\b\b\b   ");
                 }
-                catch (TaskCanceledException)
+                catch (ThreadInterruptedException)
                 {
-
+                    break;
                 }
+            }
+        }
+
+        private void Iniciar()
+        {
+            Console.Write(Mensaje);
+
+            animacion = new(EstiloDeCarga switch
+            {
+                EstiloDeCarga.LineaRotatoria => AccionLineaRotatoria,
+                EstiloDeCarga.Lineas => AccionLineas,
+                _ => AccionPuntos
+            });
+
+            animacion.Start();
+        }
+
+        /// <summary>
+        /// <para>
+        /// Inicia el mensaje de carga o detiene su animación asíncrona, de acuerdo a la <see cref="EstaActivo"/> propiedad.
+        /// </para>
+        /// <para>
+        /// Si <see cref="EstaActivo"/> es <see langword="false"/>, entonces este método imprime el <see cref="Mensaje"/> e inicia una animación asíncrona.
+        /// </para>
+        /// <para>
+        /// Si <see cref="EstaActivo"/> es <see langword="true"/>, entonces este método detiene la animación asíncrona de esta instancia.
+        /// </para>
+        /// </summary>
+        public void Alternar()
+        {
+            if (estaActivo)
+            {
+                animacion.Interrupt();
+                Console.WriteLine();
+
+                estaActivo = false;
+            }
+            else
+            {
+                Iniciar();
+
+                estaActivo = true;
             }
         }
 
         /// <summary>
         /// Inicia el mensaje de carga imprimiendo dicho mensaje e iniciando una animación asíncrona.
         /// </summary>
+        [Obsolete("Esta API está obsoleta. Usar MensajeDeCarga.Alternar() en su lugar.")]
         public void Start()
         {
-            Task tarea;
+            Console.Write(Mensaje);
 
-            Console.Write(mensaje);
             switch (EstiloDeCarga)
             {
                 case EstiloDeCarga.LineaRotatoria:
-                    tarea = new(AccionLineaRotatoria, fuente.Token);
+                    animacion = new(AccionLineaRotatoria);
                     break;
                 case EstiloDeCarga.Lineas:
-                    tarea = new(AccionLineas, fuente.Token);
+                    animacion = new(AccionLineas);
                     break;
                 default:
-                    tarea = new(AccionPuntos, fuente.Token);
+                    animacion = new(AccionPuntos);
                     break;
             }
-            tarea.Start();
+
+            animacion.Start();
         }
 
         /// <summary>
         /// Detiene la animación asíncrona del mensaje de carga.
         /// </summary>
+        [Obsolete("Esta API está obsoleta. Usar MensajeDeCarga.Alternar() en su lugar.")]
         public void Stop()
         {
-            fuente.Cancel();
+            animacion.Interrupt();
             Console.WriteLine();
         }
     }

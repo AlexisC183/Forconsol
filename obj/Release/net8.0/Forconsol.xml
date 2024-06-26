@@ -1184,6 +1184,11 @@
             Representa una animación o mensaje de carga pensado para ser usado para operaciones que toman tiempo en completarse.
             </summary>
         </member>
+        <member name="M:Forconsol.MensajeDeCarga.#ctor">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:Forconsol.MensajeDeCarga"/>.
+            </summary>
+        </member>
         <member name="M:Forconsol.MensajeDeCarga.#ctor(System.String)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Forconsol.MensajeDeCarga"/> con un mensaje especificado.
@@ -1195,6 +1200,31 @@
             Obtiene o establece el estilo del mensaje de carga.
             </summary>
             <returns>Una <see cref="P:Forconsol.MensajeDeCarga.EstiloDeCarga"/> de la instancia actual. La predeterminada es puntos.</returns>
+        </member>
+        <member name="P:Forconsol.MensajeDeCarga.Mensaje">
+            <summary>
+            Obtiene o establece el mensaje del mensaje de carga, o null si ninguno fue suministrado.
+            </summary>
+            <returns>Una <see cref="T:System.String"/> pensada para avisarle al usuario algo.</returns>
+        </member>
+        <member name="P:Forconsol.MensajeDeCarga.EstaActivo">
+            <summary>
+            Obtiene un valor que indica si este mensaje de carga está activo.
+            </summary>
+            <returns><see langword="true"/> si la animación asíncrona de este mensaje de carga está activa; <see langword="false"/> en caso contrario.</returns>
+        </member>
+        <member name="M:Forconsol.MensajeDeCarga.Alternar">
+            <summary>
+            <para>
+            Inicia el mensaje de carga o detiene su animación asíncrona, de acuerdo a la <see cref="P:Forconsol.MensajeDeCarga.EstaActivo"/> propiedad.
+            </para>
+            <para>
+            Si <see cref="P:Forconsol.MensajeDeCarga.EstaActivo"/> es <see langword="false"/>, entonces este método imprime el <see cref="P:Forconsol.MensajeDeCarga.Mensaje"/> e inicia una animación asíncrona.
+            </para>
+            <para>
+            Si <see cref="P:Forconsol.MensajeDeCarga.EstaActivo"/> es <see langword="true"/>, entonces este método detiene la animación asíncrona de esta instancia.
+            </para>
+            </summary>
         </member>
         <member name="M:Forconsol.MensajeDeCarga.Start">
             <summary>
@@ -1396,21 +1426,6 @@
             <summary>
             Proporciona métodos estáticos para convertir números de coma flotante y fracciones. Esta clase no puede ser heredada.
             </summary>
-        </member>
-        <member name="M:Forconsol.NumeroRacional.GetDecimal(Forconsol.Fraccion)">
-            <summary>
-            Convierte una fracción en un decimal.
-            </summary>
-            <param name="fraccion">Una fracción a convertir.</param>
-            <returns>Un decimal equivalente o aproximado al número contenido en <paramref name="fraccion"/>.</returns>
-        </member>
-        <member name="M:Forconsol.NumeroRacional.GetFraccion(System.Decimal)">
-            <summary>
-            Convierte un decimal en una fracción.
-            </summary>
-            <param name="decimal_">Un decimal a convertir.</param>
-            <returns>Una fracción equivalente o aproximada al número contenido en <paramref name="decimal_"/>.</returns>
-            <exception cref="T:System.OverflowException"></exception>
         </member>
         <member name="M:Forconsol.NumeroRacional.GetParteDecimal(System.Decimal)">
             <summary>

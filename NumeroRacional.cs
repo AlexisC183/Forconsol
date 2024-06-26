@@ -8,31 +8,6 @@
         private static string cadenaReal;
         private static bool hasSigno;
 
-        /// <summary>
-        /// Convierte una fracción en un decimal.
-        /// </summary>
-        /// <param name="fraccion">Una fracción a convertir.</param>
-        /// <returns>Un decimal equivalente o aproximado al número contenido en <paramref name="fraccion"/>.</returns>
-        [Obsolete("Esta API está obsoleta. Usar Fraccion.Explicit(Fraccion to Decimal) en su lugar.")]
-        public static decimal GetDecimal(Fraccion fraccion)
-        {
-            return fraccion.Numerador / (decimal)fraccion.Denominador;
-        }
-
-        /// <summary>
-        /// Convierte un decimal en una fracción.
-        /// </summary>
-        /// <param name="decimal_">Un decimal a convertir.</param>
-        /// <returns>Una fracción equivalente o aproximada al número contenido en <paramref name="decimal_"/>.</returns>
-        /// <exception cref="OverflowException"></exception>
-        [Obsolete("Esta API está obsoleta. Usar ToFraccion(Decimal) en su lugar.")]
-        public static Fraccion GetFraccion(decimal decimal_)
-        {
-            GetNumeradorYDenominador(decimal_, out int numerador, out int denominador);
-
-            return new(numerador, denominador);
-        }
-
         internal static void GetNumeradorYDenominador(decimal decimal_, out int numerador, out int denominador)
         {
             if (decimal_ <= int.MinValue - 1m || decimal_ >= int.MaxValue + 1m)

@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\Forconsol\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{88E20439-AE53-4AD6-86DC-7478E7519B18}|Forconsol.csproj|c:\\users\\dell\\source\\repos\\forconsol\\estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{88E20439-AE53-4AD6-86DC-7478E7519B18}|Forconsol.csproj|solutionrelative:estadistica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{88E20439-AE53-4AD6-86DC-7478E7519B18}|Forconsol.csproj|c:\\users\\dell\\source\\repos\\forconsol\\mensajedecarga.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88E20439-AE53-4AD6-86DC-7478E7519B18}|Forconsol.csproj|solutionrelative:mensajedecarga.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Estadistica.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Forconsol\\Estadistica.cs",
-              "RelativeDocumentMoniker": "Estadistica.cs",
-              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Forconsol\\Estadistica.cs",
-              "RelativeToolTip": "Estadistica.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAzwKAAAAA1AAAA",
+              "Title": "MensajeDeCarga.cs",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\Forconsol\\MensajeDeCarga.cs",
+              "RelativeDocumentMoniker": "MensajeDeCarga.cs",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\Forconsol\\MensajeDeCarga.cs",
+              "RelativeToolTip": "MensajeDeCarga.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIcAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T21:42:16.667Z",
+              "WhenOpened": "2024-06-26T02:39:44.079Z",
               "EditorCaption": ""
             }
           ]
