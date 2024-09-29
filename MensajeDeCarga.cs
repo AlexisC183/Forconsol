@@ -162,40 +162,6 @@
                 estaActivo = true;
             }
         }
-
-        /// <summary>
-        /// Inicia el mensaje de carga imprimiendo dicho mensaje e iniciando una animación asíncrona.
-        /// </summary>
-        [Obsolete("Esta API está obsoleta. Usar MensajeDeCarga.Alternar() en su lugar.")]
-        public void Start()
-        {
-            Console.Write(Mensaje);
-
-            switch (EstiloDeCarga)
-            {
-                case EstiloDeCarga.LineaRotatoria:
-                    animacion = new(AccionLineaRotatoria);
-                    break;
-                case EstiloDeCarga.Lineas:
-                    animacion = new(AccionLineas);
-                    break;
-                default:
-                    animacion = new(AccionPuntos);
-                    break;
-            }
-
-            animacion.Start();
-        }
-
-        /// <summary>
-        /// Detiene la animación asíncrona del mensaje de carga.
-        /// </summary>
-        [Obsolete("Esta API está obsoleta. Usar MensajeDeCarga.Alternar() en su lugar.")]
-        public void Stop()
-        {
-            animacion.Interrupt();
-            Console.WriteLine();
-        }
     }
 
     /// <summary>
